@@ -1,0 +1,4 @@
+repository "Soldatik/Soldatik@10171120813058@cloud"
+  path "/"
+    br "/main"
+    co "/main"
