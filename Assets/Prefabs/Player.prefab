@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &663116093651311446
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 277356102647604235}
+  m_Layer: 0
+  m_Name: BulletSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &277356102647604235
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 663116093651311446}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.181, y: 0.463, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4523495978312823971}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &4545928119164180045
 GameObject:
   m_ObjectHideFlags: 0
@@ -14,6 +45,7 @@ GameObject:
   - component: {fileID: 1498991391789437504}
   - component: {fileID: 1913688433206362397}
   - component: {fileID: 6295346229198172403}
+  - component: {fileID: 5331172526893778099}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -112,6 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7324360bd6ae7745acbc5d7e9707431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  reloadTime: 1
+  bullet: {fileID: 8186950798512598751, guid: 15ac7bd4a70cd5e44b4e9fed96ed4eac, type: 3}
+  bulletSpawn: {fileID: 277356102647604235}
   speed: 5
   playerSprite: {fileID: 9068638319614669518}
 --- !u!95 &1913688433206362397
@@ -233,6 +268,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5331172526893778099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4545928119164180045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2b2a588335ce034284b8e3f2eea0ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  bloodPref: {fileID: 2929648187789764346, guid: 6a4b214192dfbb64baf195d1ca5b5f48, type: 3}
+  hp: 100
 --- !u!1 &9068638319614669518
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,13 +307,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9068638319614669518}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 277356102647604235}
   m_Father: {fileID: 2961195902114469993}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2161677428777919896
 SpriteRenderer:
   m_ObjectHideFlags: 0

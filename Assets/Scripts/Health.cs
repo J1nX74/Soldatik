@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public GameObject bloodPref;
     public float hp = 100;
     
     void Start()
@@ -21,7 +22,10 @@ public class Health : MonoBehaviour
 
         if (hp <= 0)
         {
+            Instantiate(bloodPref, gameObject.transform.position, gameObject.transform.rotation);
+
             Destroy(gameObject);
+
         }
     }
 }

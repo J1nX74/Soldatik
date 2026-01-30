@@ -5,21 +5,64 @@ using UnityEngine.Scripting.APIUpdating;
 
 public class Player : MonoBehaviour
 {
+    public float reloadTime;
+    float shotTime = Mathf.Infinity;
+    bool canShot = false;
+
+    public Bullet bullet;
+    public Transform bulletSpawn;
     public float speed = 5;
     Animator animator;
     public GameObject playerSprite;
     AudioSource audioSource;
+    public Transform startPoint;
+    public Transform finishPoint;
+    public GameManager gameManager;
+
+
+    void StartMove()
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(audioSource.clip);
+        }
+    }
 
     void Start()
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        gameManager = FindFirstObjectByType<GameManager>();
     }
 
 
     void Update()
     {
         Move();
+        Shot();
+        CanShot();
+    }
+
+    void Shot()
+    {
+        if (Input.GetMouseButton(0) && canShot) 
+        {
+            canShot = false;
+            Bullet bull = Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
+            bull.gameObject.transform.Rotate(bulletSpawn.rotation.eulerAngles, Space.World);
+            bull.SetDirection(bulletSpawn.right); 
+        }
+    }
+
+    void CanShot()
+    {
+        if (canShot) return;
+        shotTime += Time.deltaTime;
+        if (shotTime > reloadTime)
+        {
+            shotTime = 0;
+            canShot = true;
+        }
     }
 
     private void Move()
